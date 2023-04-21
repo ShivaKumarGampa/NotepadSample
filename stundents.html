@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="https://demos.telerik.com/kendo-ui/grid/remote-data-binding">
+    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link href="https://kendo.cdn.telerik.com/themes/6.2.0/default/default-main.css" rel="stylesheet" />
+    <script src="https://kendo.cdn.telerik.com/2023.1.314/js/jquery.min.js"></script>
+    
+    
+    <script src="https://kendo.cdn.telerik.com/2023.1.314/js/kendo.all.min.js"></script>
+    
+    
+
+</head>
+<body>
+    <div id="example">
+    <div id="grid"></div>
+    <script>
+<div id="example">
+      <div id="grid"></div>
+      <script>
+        $(document).ready(function() {
+          $("#grid").kendoGrid({
+            dataSource: {
+              transport: {
+                read: {
+                  url: "http://localhost:8080/api/Students",
+                  dataType: "jsonp", 
+                }
+              },
+              schema: {
+                data:"Items",
+                total:"Count",
+              },
+              pageSize: 20,
+            },
+             columns: [{
+    field: "name",
+    title: "Name"
+  }, {
+    field: "age",
+    title: "Age" 
+  },{
+    field:"hobbies",
+    title:"Hobbies",
+    template: '{{ dataItem.hobbies.join(", ") }}'
+  }],
+            height: 550,
+            filterable: true,
+            sortable: true,
+            pageable: true,
+          });
+        });
+      
+    </script>
+</div>
+
+
+
+</body>
+</html>
